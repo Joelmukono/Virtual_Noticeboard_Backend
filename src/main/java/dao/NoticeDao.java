@@ -1,14 +1,15 @@
 package dao;
 import models.Comments;
+import models.Notice;
 
 import java.util.List;
 public interface NoticeDao {
 
-    void add(Comments news);
+    void add(Notice notice);
 
-    List<Comments> getAll();
+    List<Notice> getAll();
 
-    Comments findNewsById(int id);
+    Notice findNoticeById(int id);
 
     void clearAll();
 }
