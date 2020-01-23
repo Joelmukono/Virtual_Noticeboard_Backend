@@ -33,20 +33,20 @@ public class Sql2ocommentsDao implements commentsDao {
     }
 
     @Override
-    public Comments findCommentById(int noticeId){
+    public Comments findCommentById(int commentId){
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM comments WHERE commentId = :noticeId")
-                    .addParameter("noticeId",noticeId).executeAndFetchFirst(Comments.class);
+            return conn.createQuery("SELECT * FROM comments WHERE commentId = :commentId")
+                    .addParameter("noticeId",commentId).executeAndFetchFirst(Comments.class);
         }
 
     }
 
     @Override
     public void deleteCommentById(int commentId) {
-        String sql = "DELETE from notices WHERE noticeId=:noticeId"; //raw sql
+        String sql = "DELETE from comments WHERE commentId=:commentId"; //raw sql
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
-                    .addParameter("noticeId", commentId)
+                    .addParameter("commentId", commentId)
                     .executeUpdate();
         } catch (Sql2oException ex){
             System.out.println(ex);

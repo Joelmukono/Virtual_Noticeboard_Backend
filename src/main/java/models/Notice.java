@@ -10,6 +10,7 @@ public class Notice {
     private Timestamp timestamp;
     private String title;
     private String noticeContent;
+    private int userId;
 
 
     public Notice(String noticeType, Timestamp timestamp, String noticeContent, String title){
@@ -65,6 +66,15 @@ public class Notice {
 
     public void setNoticeId(int noticeId) {
         this.noticeId = noticeId;
+    }
+
+    public int getUserId(){
+        return userId;
+    }
+
+    public void setUserId( int userId){
+        this.userId = userId;
+
     }
 
 
