@@ -7,10 +7,10 @@ connected audience to be able to see relevant information concerning their envir
 ### BDD
 |feature     |Description      |
 |------------|------------------
-|Add users | Add users to the database|
-|See list of users|Query database for users|
-|See particular user|Query DB for specific user|
-|See users in department|Query DB for users in a department|
+|Login| Log in to the application|
+|View notices|See the notice board with available notices|
+|See particular Notice|Click to see details of a particular notice|
+|Add a notice|Add a notice to the noticeboard|
 
 
 ### Contributors
@@ -32,21 +32,11 @@ build and run the code. Preferred IDE is IntelliJ IDEA.
 
 In PSQL:
 
-CREATE DATABASE news_portal;
-CREATE TABLE news (id SERIAL PRIMARY KEY, headline VARCHAR, content VARCHAR, department_id INTEGER);
-CREATE TABLE departments (id SERIAL PRIMARY KEY, name varchar, description VARCHAR);
-CREATE TABLE users (id SERIAL PRIMARY KEY, name VARCHAR, position varchar, role VARCHAR, department_id INTEGER);
-
-CREATE DATABASE news_portal_test WITH TEMPLATE news_portal;
-
-### End Points
-|URL    |Description      | 
-|------------|------------------
-|/user/:userId | Get the user with the given ID from database|
-|/user/new|Add new user to DB|
-|/news/new|Add news item to DB|
-|/departments|Query DB for available departments|
-|/departments/new|Add new department to the DB|
+CREATE DATABASE noticeboard;
+\c noticeboard;
+CREATE TABLE users (userId SERIAL PRIMARY KEY,username VARCHAR,password VARCHAR);
+CREATE TABLE comments (commentId SERIAL PRIMARY KEY,timecreated timestamp,commentText VARCHAR,noticeId INTEGER,userId INTEGER);
+CREATE TABLE notice (noticeId SERIAL PRIMARY KEY,timecreated timestamp,title VARCHAR,noticeContent VARCHAR, userId INTEGER);
 
 
 ## Want to propose any changes?
