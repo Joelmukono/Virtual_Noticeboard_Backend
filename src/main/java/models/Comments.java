@@ -11,7 +11,6 @@ public class Comments {
 
 
     public Comments(Timestamp timestamp, String commentText){
-        this.commentId =commentId;
         this.timestamp = timestamp;
         this.commentText = commentText;
 
