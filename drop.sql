@@ -1,2 +1,2 @@
-DROP DATABASE news_test;
-DROP DATABASE news;
+DROP DATABASE noticeboard_test;
+DROP DATABASE noticeboard;

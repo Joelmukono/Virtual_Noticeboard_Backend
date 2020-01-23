@@ -1,21 +1,22 @@
 package models;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class Comments {
 
     private int commentId;
-    private Timestamp timestamp;
+    private Timestamp timecreated;
     private String commentText;
     private int noticeId;
     private int userId;
 
 
-    public Comments(int commentId, Timestamp timestamp, String commentText){
+    public Comments(int commentId, Timestamp timecreated, String commentText,int userId,int noticeId){
         this.commentId =commentId;
-        this.timestamp = timestamp;
+        this.timecreated = timecreated;
         this.commentText = commentText;
-
+        this.userId = userId;
+        this.noticeId = noticeId;
     }
 
     public int getUserId(){
@@ -37,11 +38,11 @@ public class Comments {
 
 
     public Timestamp getTimestamp() {
-        return timestamp;
+        return timecreated;
     }
 
     public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+        this.timecreated = timestamp;
     }
 
     public String getCommentText() {

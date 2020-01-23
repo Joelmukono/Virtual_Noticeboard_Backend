@@ -12,11 +12,12 @@ public class Notice {
     private int userId;
 
 
-    public Notice(Timestamp timecreated, String noticeContent, String title){
+    public Notice(Timestamp timecreated, String noticeContent, String title, int userId){
 
         this.timecreated = timecreated;
         this.noticeContent = noticeContent;
         this.title = title;
+        this.userId = userId;
 
 
     }

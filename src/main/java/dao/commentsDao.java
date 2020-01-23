@@ -8,7 +8,7 @@ public interface commentsDao {
 
     void add(Comments news);
 
-    List<Comments> getAll();
+    List<Comments> getAll(int userId);
 
     Comments findCommentById(int id);
 

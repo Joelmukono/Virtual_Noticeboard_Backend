@@ -29,7 +29,7 @@ public class App {
         userDao = new Sql2oUserDao(sql2o);
 
 
-        post("/notice/:userId/notice/new/","application/json",(request,response)->{
+        post("/notice/:userId/notice/new/","application/json",(request,response)->{ //works
             Notice notice = gson.fromJson(request.body(), Notice.class);
             int useId = Integer.parseInt(request.params("userId"));
             notice.setUserId(useId);
@@ -41,20 +41,24 @@ public class App {
 
         });
 
-        get("/notices/all/","application/json",(request,response)->{
+        get("/notices/all/","application/json",(request,response)->{ //works
             response.type("application/json");
             return gson.toJson(noticeDao.getAll());
         });
 
-        get("/notice/:noticeId/","application/json",(request,response)->{
+        get("/notice/:noticeId/","application/json",(request,response)->{ //works
             response.type("application/json");
             int noticeId = Integer.parseInt(request.params("noticeId"));
             response.type("application/json");
             return gson.toJson(noticeDao.findNoticeById(noticeId));
         });
 
-        post("/commnets/:userId/:noticeId/new/comment/","application/json",(request, response) -> {
+        post("/commnets/:userId/:noticeId/new/comment/","application/json",(request, response) -> { //works
             Comments comments = gson.fromJson(request.body(),Comments.class);
+            int useId = Integer.parseInt(request.params("userId"));
+            //comments.setUserId(useId);
+            int noticeId = Integer.parseInt(request.params("noticeId"));
+            //comments.setNoticeId(noticeId);
             commentsDao.add(comments);
             response.status(201);
             response.type("application/json");
@@ -62,9 +66,10 @@ public class App {
 
         });
 
-        get("/comments/all/","application/json",(request,response)->{
+        get("/comments/:userId/all/","application/json",(request,response)->{
             response.type("application/json");
-            return gson.toJson(commentsDao.getAll());
+            int findByUser = Integer.parseInt(request.params("userId"));
+            return gson.toJson(commentsDao.getAll(findByUser));
         });
 
         get("/comments/:commentsId/","application/json",(request,response)->{
@@ -75,7 +80,7 @@ public class App {
         });
 
 
-        post("/user/new/","application/json",(request, response) -> {
+        post("/user/new/","application/json",(request, response) -> { //works
             Users user = gson.fromJson(request.body(),Users.class);
             userDao.add(user);
             response.status(201);

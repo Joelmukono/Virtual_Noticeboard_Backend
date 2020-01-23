@@ -24,9 +24,9 @@ public class Sql2oNoticeDao implements NoticeDao {
         }
     }
     @Override
-    public List<Notice> getAll(){
+    public List<Notice> getAll(){ //works
         try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM notices").executeAndFetch(Notice.class);
+            return con.createQuery("SELECT * FROM notice").executeAndFetch(Notice.class);
 
         }
     }
@@ -34,7 +34,7 @@ public class Sql2oNoticeDao implements NoticeDao {
     @Override
     public Notice findNoticeById(int noticeId){
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM notices WHERE noticeId = :noticeId")
+            return conn.createQuery("SELECT * FROM notice WHERE noticeId = :noticeId")
                     .addParameter("noticeId",noticeId).executeAndFetchFirst(Notice.class);
         }
 
@@ -42,7 +42,7 @@ public class Sql2oNoticeDao implements NoticeDao {
 
     @Override
     public void deleteNoticeById(int noticeId) {
-        String sql = "DELETE from notices WHERE noticeId=:noticeId"; //raw sql
+        String sql = "DELETE from notice WHERE noticeId=:noticeId"; //raw sql
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("noticeId", noticeId)

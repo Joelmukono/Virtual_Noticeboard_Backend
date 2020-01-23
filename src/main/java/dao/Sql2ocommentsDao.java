@@ -15,7 +15,7 @@ public class Sql2ocommentsDao implements commentsDao {
 
     @Override
     public void add(Comments comments){
-        String sql = "INSERT INTO comments (commentText,timestamp,noticeId) VALUES (:commentText,now(),:noticeID)";
+        String sql = "INSERT INTO comments (commentText,noticeId) VALUES (:commentText,:noticeId)";
         try(Connection con = sql2o.open()){
             int commentId = (int) con.createQuery(sql,true).bind(comments).executeUpdate().getKey();
             comments.setCommentId(commentId);
@@ -25,9 +25,9 @@ public class Sql2ocommentsDao implements commentsDao {
         }
     }
     @Override
-    public List<Comments> getAll(){
+    public List<Comments> getAll(int userId){
         try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM comments").executeAndFetch(Comments.class);
+            return con.createQuery("SELECT * FROM comments WHERE userId = :userId").addParameter("userId", userId ).executeAndFetch(Comments.class);
 
         }
     }
