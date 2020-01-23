@@ -1,5 +1,5 @@
 package dao;
-import models.Comments;
+
 import models.Notice;
 
 import java.util.List;

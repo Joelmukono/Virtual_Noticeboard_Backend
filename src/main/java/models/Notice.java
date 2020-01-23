@@ -6,16 +6,15 @@ import java.sql.Timestamp;
 public class Notice {
 
     private int noticeId;
-    private String noticeType;
-    private Timestamp timestamp;
+    private Timestamp timecreated;
     private String title;
     private String noticeContent;
     private int userId;
 
 
-    public Notice(String noticeType, Timestamp timestamp, String noticeContent, String title){
-        this.noticeType = noticeType;
-        this.timestamp = timestamp;
+    public Notice(Timestamp timecreated, String noticeContent, String title){
+
+        this.timecreated = timecreated;
         this.noticeContent = noticeContent;
         this.title = title;
 
@@ -43,22 +42,16 @@ public class Notice {
 
 
     public Timestamp getTimestamp() {
-        return timestamp;
+        return timecreated;
     }
 
     public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+        this.timecreated = timestamp;
     }
 
 
 
-    public String getNoticeType() {
-        return noticeType;
-    }
 
-    public void setNoticeType(String noticeType) {
-        this.noticeType = noticeType;
-    }
 
     public int getNoticeId() {
         return noticeId;
