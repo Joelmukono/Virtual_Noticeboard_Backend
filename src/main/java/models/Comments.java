@@ -6,6 +6,8 @@ public class Comments {
     private int commentId;
     private Timestamp timestamp;
     private String commentText;
+    private int noticeId;
+
 
     public Comments(int commentId, Timestamp timestamp, String commentText){
         this.commentId =commentId;
@@ -38,6 +40,14 @@ public class Comments {
 
     public void setCommentText(String commentText) {
         this.commentText = commentText;
+    }
+
+    public int getNoticeId() {
+        return noticeId;
+    }
+
+    public void setNoticeId(int noticeId) {
+        this.noticeId = noticeId;
     }
 
 

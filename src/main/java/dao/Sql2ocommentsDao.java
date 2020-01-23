@@ -1,51 +1,52 @@
 package dao;
-import models.Notice;
+
+import models.Comments;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
-import java.util.List;
 
-public class Sql2oNoticeDao implements NoticeDao {
+import java.util.List;
+public class Sql2ocommentsDao implements commentsDao {
 
     private final Sql2o sql2o;
-    public Sql2oNoticeDao(Sql2o sql2o){
+    public Sql2ocommentsDao(Sql2o sql2o){
         this.sql2o = sql2o;
     }
 
     @Override
-    public void add(Notice notice){
-        String sql = "INSERT INTO notices (noticeType,timestamp,title,noticeContent) VALUES (:noticeType,:timestamp,:title,:noticeContent)";
+    public void add(Comments comments){
+        String sql = "INSERT INTO comments (commentText,timestamp,noticeId) VALUES (:commentText,now(),:noticeID)";
         try(Connection con = sql2o.open()){
-            int noticeId = (int) con.createQuery(sql,true).bind(notice).executeUpdate().getKey();
-            notice.setNoticeId(noticeId);
+            int commentId = (int) con.createQuery(sql,true).bind(comments).executeUpdate().getKey();
+            comments.setCommentId(commentId);
 
         }catch (Sql2oException ex){
             System.out.println(ex);
         }
     }
     @Override
-    public List<Notice> getAll(){
+    public List<Comments> getAll(){
         try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM notices").executeAndFetch(Notice.class);
+            return con.createQuery("SELECT * FROM comments").executeAndFetch(Comments.class);
 
         }
     }
 
     @Override
-    public Notice findNoticeById(int noticeId){
+    public Comments findCommentById(int noticeId){
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM notices WHERE noticeId = :noticeId")
-                    .addParameter("noticeId",noticeId).executeAndFetchFirst(Notice.class);
+            return conn.createQuery("SELECT * FROM comments WHERE commentId = :noticeId")
+                    .addParameter("noticeId",noticeId).executeAndFetchFirst(Comments.class);
         }
 
     }
 
     @Override
-    public void deleteNoticeById(int noticeId) {
+    public void deleteCommentById(int commentId) {
         String sql = "DELETE from notices WHERE noticeId=:noticeId"; //raw sql
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
-                    .addParameter("noticeId", noticeId)
+                    .addParameter("noticeId", commentId)
                     .executeUpdate();
         } catch (Sql2oException ex){
             System.out.println(ex);
@@ -54,7 +55,7 @@ public class Sql2oNoticeDao implements NoticeDao {
 
     @Override
     public void clearAll(){
-        String sql = "DELETE FROM notice";
+        String sql = "DELETE FROM comments";
         try (Connection connection = sql2o.open()){
             connection.createQuery(sql)
                     .executeUpdate();

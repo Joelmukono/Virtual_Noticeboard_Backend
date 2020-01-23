@@ -4,13 +4,15 @@ import models.Comments;
 
 import java.util.List;
 
-public interface comentsDao {
+public interface commentsDao {
 
     void add(Comments news);
 
     List<Comments> getAll();
 
-    Comments findNewsById(int id);
+    Comments findCommentById(int id);
+
+    void deleteCommentById(int commentId);
 
     void clearAll();
 }

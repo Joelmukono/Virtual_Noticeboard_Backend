@@ -11,5 +11,7 @@ public interface NoticeDao {
 
     Notice findNoticeById(int id);
 
+    void deleteNoticeById(int id);
+
     void clearAll();
 }
