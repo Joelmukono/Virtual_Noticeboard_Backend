@@ -11,6 +11,8 @@ import static spark.Spark.*;
 
 public class App {
     public static void main(String[] args){
+        Sql2oNoticeDao departmentDao;
+        Sql2ocommentsDao newsDao;
 
         Connection conn;
         Gson gson = new Gson();
@@ -19,7 +21,9 @@ public class App {
 
         Sql2o sql2o = new Sql2o(connectionString, "joel", "password");
 
-
+        noticeDao = new Sql2oNoticeDao(sql2o);
+        departmentDao = new Sql2oDepartmentDao(sql2o);
+        newsDao = new Sql2oNewsDao(sql2o);
 
     }
 }

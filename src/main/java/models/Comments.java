@@ -3,6 +3,7 @@ package models;
 import java.security.Timestamp;
 
 public class Comments {
+
     private int commentId;
     private Timestamp timestamp;
     private String commentText;
