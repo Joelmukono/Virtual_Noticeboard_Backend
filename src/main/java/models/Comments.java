@@ -8,6 +8,7 @@ public class Comments {
     private Timestamp timestamp;
     private String commentText;
     private int noticeId;
+    private int userId;
 
 
     public Comments(int commentId, Timestamp timestamp, String commentText){
@@ -15,6 +16,14 @@ public class Comments {
         this.timestamp = timestamp;
         this.commentText = commentText;
 
+    }
+
+    public int getUserId(){
+        return userId;
+    }
+
+    public void setUserId(int userId){
+        this.userId = userId;
     }
 
     public int getCommentId() {
