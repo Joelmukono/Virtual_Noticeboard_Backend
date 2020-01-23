@@ -19,9 +19,7 @@ public class App {
 
         Sql2o sql2o = new Sql2o(connectionString, "joel", "password");
 
-        userDao = new Sql2oUserDao(sql2o);
-        departmentDao = new Sql2oDepartmentDao(sql2o);
-        newsDao = new Sql2oNewsDao(sql2o);
+
 
     }
 }
