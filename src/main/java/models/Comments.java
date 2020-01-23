@@ -1,6 +1,6 @@
 package models;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class Comments {
 
@@ -11,8 +11,7 @@ public class Comments {
     private int userId;
 
 
-    public Comments(int commentId, Timestamp timestamp, String commentText){
-        this.commentId =commentId;
+    public Comments(Timestamp timestamp, String commentText){
         this.timestamp = timestamp;
         this.commentText = commentText;
 

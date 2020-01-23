@@ -96,7 +96,5 @@ public class App {
             return gson.toJson(commentsDao.findCommentById(userId));
         });
 
-
-
     }
 }
