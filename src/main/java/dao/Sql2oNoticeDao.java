@@ -14,7 +14,7 @@ public class Sql2oNoticeDao implements NoticeDao {
 
     @Override
     public void add(Notice notice){
-        String sql = "INSERT INTO notices (noticeType,timestamp,title,noticeContent) VALUES (:noticeType,:now(),:title,:noticeContent)";
+        String sql = "INSERT INTO notice (title,noticeContent) VALUES (:title,:noticeContent)";
         try(Connection con = sql2o.open()){
             int noticeId = (int) con.createQuery(sql,true).bind(notice).executeUpdate().getKey();
             notice.setNoticeId(noticeId);

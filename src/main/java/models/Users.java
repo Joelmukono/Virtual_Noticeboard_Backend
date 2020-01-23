@@ -1,22 +1,22 @@
 package models;
 
 public class Users {
-
+    private String username;
     private String password;
-    private String userName;
     private int userId;
 
     public Users(String password,String userName){
+        this.username = userName;
         this.password = password;
-        this.userName = userName;
+
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public String getPassword() {
